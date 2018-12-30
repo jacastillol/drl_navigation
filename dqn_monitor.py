@@ -2,6 +2,34 @@ from collections import deque
 import numpy as np
 import torch
 
+def reset(env,train_mode=True):
+    """ Performs an Environment step with a particular action.
+
+    Params
+    ======
+        env: instance of UnityEnvironment class
+    """
+    env_info = env.reset(train_mode=train_mode)[brain_name]
+    state = env_info.vector_observations[0]
+    return state
+
+def step(env, action):
+    """ Performs an Environment step with a particular action.
+
+    Params
+    ======
+        env: instance of UnityEnvironment class
+        action: a valid action on the env
+    """
+    # get the default brain
+    brain_name = env.brain_names[0]
+    env_info = env.step(action)[brain_name]
+    # get result from taken action
+    next_state = env_info.vector_observations[0]
+    reward = env_info.rewards[0]
+    done = env_info.local_done[0]
+    return next_state, reward, done
+
 def dqn_interact(env, agent,
                  n_episodes=2000, window=100, max_t=1000,
                  eps_start=1.0, eps_end=0.01, eps_decay=0.995):
@@ -9,7 +37,7 @@ def dqn_interact(env, agent,
     
     Params
     ======
-        env: instance of OpenAI Gym's environment
+        env: instance of UnityEnvironment class
         agent: instance of class Agent (see dqn_agent.py for details)
         n_episodes (int): maximum number of training episodes
         window (int): number of episodes to consider when calculating average rewards
@@ -31,14 +59,14 @@ def dqn_interact(env, agent,
     # for each episode
     for i_episode in range(1, n_episodes+1):
         # begin the episode
-        state = env.reset()
+        state = reset(env, train_mode=True)
         # initialize the sample reward
         samp_reward = 0
         for t in range(max_t):
             # agent selects an action
             action =  agent.act(state, eps)
             # agent performs the selected action
-            next_state, reward, done, _ = env.step(action)
+            next_state, reward, done = step(env, action)
             # agent performs internal updates based on sampled experience
             agent.step(state, action, reward, next_state, done)
             # updated the sample reward
@@ -67,7 +95,7 @@ def dqn_interact(env, agent,
         else:
             print(message.format(i_episode, n_episodes, best_avg_reward, eps),end="")
         # stopping criteria
-        if np.mean(samp_rewards)>=200.0:
+        if np.mean(samp_rewards)>=13.0:
             print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.
                   format(i_episode, np.mean(samp_rewards)))
             torch.save(agent.actor_local.state_dict(), 'checkpoint.pth')
