@@ -4,11 +4,16 @@ from unityagents import UnityEnvironment
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--learn', help='run a pre-trainded neural network agent', action='store_true')
+args = parser.parse_args()
 
 env = UnityEnvironment(file_name="Banana_Linux/Banana.x86_64")
 agent = Agent(state_size=37, action_size=4, seed=0)
 
-if True:
+if args.learn:
     all_returns, avg_reward, best_avg_reward = dqn_interact(env, agent)
 
     # to continue ...
