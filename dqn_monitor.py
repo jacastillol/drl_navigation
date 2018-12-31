@@ -9,7 +9,10 @@ def reset(env,train_mode=True):
     ======
         env: instance of UnityEnvironment class
     """
+    # get the default brain
+    brain_name = env.brain_names[0]
     env_info = env.reset(train_mode=train_mode)[brain_name]
+    # get state
     state = env_info.vector_observations[0]
     return state
 
@@ -32,7 +35,7 @@ def step(env, action):
 
 def dqn_interact(env, agent,
                  n_episodes=2000, window=100, max_t=1000,
-                 eps_start=1.0, eps_end=0.01, eps_decay=0.995):
+                 eps_start=1.0, eps_end=0.005, eps_decay=0.980):
     """ Deep Q-Learning Agent-Environment interaction.
     
     Params
@@ -95,7 +98,7 @@ def dqn_interact(env, agent,
         else:
             print(message.format(i_episode, n_episodes, best_avg_reward, eps),end="")
         # stopping criteria
-        if np.mean(samp_rewards)>=13.0:
+        if np.mean(samp_rewards)>=15.0:
             print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.
                   format(i_episode, np.mean(samp_rewards)))
             torch.save(agent.actor_local.state_dict(), 'checkpoint.pth')
