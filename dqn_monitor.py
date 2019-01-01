@@ -35,7 +35,8 @@ def step(env, action):
 
 def dqn_interact(env, agent,
                  n_episodes=2000, window=100, max_t=1000,
-                 eps_start=1.0, eps_end=0.005, eps_decay=0.980):
+                 eps_start=1.0, eps_end=0.005, eps_decay=0.980,
+                 filename='checkpoint.pth'):
     """ Deep Q-Learning Agent-Environment interaction.
     
     Params
@@ -48,6 +49,7 @@ def dqn_interact(env, agent,
         eps_start (float): starting value of epsilon, for epsilon-greedy action selection
         eps_end (float): minimum value of epsilon
         eps_decay (float): multiplicative factor (per episode) for decreasing epsilon
+        filename (string): name of the file to save weights
     """
     # all returns
     all_returns = []
@@ -101,7 +103,7 @@ def dqn_interact(env, agent,
         if np.mean(samp_rewards)>=15.0:
             print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.
                   format(i_episode, np.mean(samp_rewards)))
-            torch.save(agent.actor_local.state_dict(), 'checkpoint.pth')
+            torch.save(agent.actor_local.state_dict(), filename)
             break
 
     return all_returns, avg_rewards, best_avg_reward
