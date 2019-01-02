@@ -2,9 +2,25 @@
 
 A bananas collector navigation problem of Unity ML-Agents is solved with DRL using DQN and some improvements.
 
+## Project Details
+
+The Banana Collector navigation problem has an agent moving around a rectangular area with the goal of collect yellow bananas and avoid blue bananas. The state space sum up a 37D vector represented by one 2D vector representing the velocity and 35D vector representing a ray-based perception sensor. The agent has to decide between four actions each time step to maximize its total reward, the set of actions are
+
+     - ```0```: to move forward
+     - ```1```: to move backward
+     - ```2```: to turn left
+     - ```3```: to turn right
+
+And the reward could be summarized as
+
+     - ```+1```: Pick up a yellow banana
+     - ```-1```: Pick up a blue banana
+
+The task could be seen as episodic where the agent must get at least an average score of +13 over 100 consecutive episodes.
+
 ## Dependencies
 
-To set up your python environment to run the code in this repository, follow the instructions below.
+To set up your python environment in a working Anaconda session to run the code in this repository, follow the instructions below.
 
 1. Create (and activate) a new environment with Python 3.6 with conda.
 
