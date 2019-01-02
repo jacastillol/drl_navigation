@@ -16,7 +16,7 @@ And the reward could be summarized as
 * `+1`: Pick up a yellow banana
 * `-1`: Pick up a blue banana
 
-The task could be seen as episodic where the agent must get at least an average score of +13 over 100 consecutive episodes.
+The task could be seen as episodic where is considered solved when the agent would get at least an average score of +13 over 100 consecutive episodes.
 
 ## Dependencies
 
@@ -60,3 +60,7 @@ To set up your python environment in a working Anaconda session to run the code 
     - Mac OSX [here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
     - Windows (64-bit) [here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
     Then, place the file in the ```drl_navigation/``` folder of this GitHub repository, and unzip the file.
+
+## Instructions
+
+To run the code 
