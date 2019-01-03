@@ -1,2 +1,2 @@
 # exclude ipynb_checpoints
-./ipynb_checkpoints
+.ipynb_checkpoints/
