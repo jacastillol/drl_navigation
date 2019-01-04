@@ -51,6 +51,7 @@ def dqn_interact(env, agent,
         eps_decay (float): multiplicative factor (per episode) for decreasing epsilon
         filename (string): name of the file to save weights
     """
+    first_time=True
     # all returns
     all_returns = []
     # initialize average rewards
@@ -100,7 +101,8 @@ def dqn_interact(env, agent,
         else:
             print(message.format(i_episode, n_episodes, best_avg_reward, eps),end="")
         # target criteria
-        if np.mean(samp_rewards)>=13.0:
+        if np.mean(samp_rewards)>=13.0 and first_time:
+            first_time=False
             print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.
                   format(i_episode, np.mean(samp_rewards)))
         # stopping criteria
