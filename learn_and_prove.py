@@ -23,6 +23,9 @@ else:
 env = UnityEnvironment(file_name="Banana_Linux/Banana.x86_64")
 agent = Agent(state_size=37, action_size=4, seed=0)
 
+#print neural network architecture
+print(Agent.actor_local)
+
 if args.train:
     all_returns, avg_reward, best_avg_reward = dqn_interact(env, agent, filename=filename)
     # save training curves
