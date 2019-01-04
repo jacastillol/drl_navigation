@@ -1,2 +1,6 @@
-# exclude ipynb_checpoints
+# exclude the following files and directories
 .ipynb_checkpoints/
+__pycache__/
+Banana_Linux/
+python/
+unity-environment.log
