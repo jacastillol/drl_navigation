@@ -1,6 +1,7 @@
 from collections import deque
 import numpy as np
 import torch
+import time
 
 def reset(env,train_mode=True):
     """ Performs an Environment step with a particular action.
@@ -62,6 +63,8 @@ def dqn_interact(env, agent,
     best_avg_reward = -np.inf
     # initialize eps
     eps = eps_start
+    # init timer
+    tic = time.clock()
     # for each episode
     for i_episode in range(1, n_episodes+1):
         # begin the episode
@@ -103,12 +106,12 @@ def dqn_interact(env, agent,
         # target criteria
         if np.mean(samp_rewards)>=13.0 and first_time:
             first_time=False
-            print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.
-                  format(i_episode, np.mean(samp_rewards)))
+            print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}\tin {:.2f} secs'.
+                  format(i_episode, np.mean(samp_rewards), time.clock()-tic))
         # stopping criteria
         if np.mean(samp_rewards)>=15.0:
-            print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.
-                  format(i_episode, np.mean(samp_rewards)))
+            print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}\tin {:.2f} secs'.
+                  format(i_episode, np.mean(samp_rewards), time.clock()-tic))
             break
     # save weights
     torch.save(agent.actor_local.state_dict(), filename)
