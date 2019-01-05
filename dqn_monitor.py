@@ -109,7 +109,8 @@ def dqn_interact(env, agent,
         if np.mean(samp_rewards)>=15.0:
             print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.
                   format(i_episode, np.mean(samp_rewards)))
-            torch.save(agent.actor_local.state_dict(), filename)
             break
-
+    # save weights
+    torch.save(agent.actor_local.state_dict(), filename)
+    # return info
     return all_returns, avg_rewards, best_avg_reward
