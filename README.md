@@ -3,8 +3,11 @@
 A bananas collector navigation problem of Unity ML-Agents is solved with DRL using DQN and some additional improvements. Therefore this problem has a continuous state space and a discrete action space.
 
 From Tabula rasa
+
 ![random agent](images/random-agent.gif)
+
 to skilled agent
+
 ![trained agent](images/trained-agent.gif)
 
 ## Project Details
