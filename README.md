@@ -2,6 +2,11 @@
 
 A bananas collector navigation problem of Unity ML-Agents is solved with DRL using DQN and some additional improvements. Therefore this problem has a continuous state space and a discrete action space.
 
+From Tabula rasa
+![random agent](images/random-agent.gif)
+to skilled agent
+![trained agent](images/trained-agent.gif)
+
 ## Project Details
 
 The Banana Collector navigation problem has an agent moving around a rectangular area with the goal of collect yellow bananas and avoid blue bananas. The state space sum up a 37D vector represented by one 2D vector representing the velocity and 35D vector representing a ray-based perception sensor. The agent has to decide between four actions each time step to maximize its total reward, the set of actions are
