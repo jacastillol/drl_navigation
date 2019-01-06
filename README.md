@@ -73,14 +73,26 @@ To set up your python environment in a working Anaconda session to run the code 
 
 Remember to activate the environment with `source activate drlnavigation`
 
+* To run help:
+    ```bash 
+    python learn_and_prove.py --help
+    ```
 * To run a tabula rasa or a totally random agent run:
     ```bash 
     python learn_and_prove.py --random
     ```
-* To train an agent and save the files under `checkpoint.pth` and `checkpoint.pth.npz` names, run:
+* To train an agent and save the files under `FILENAME` and `FILENAME.npz` names, run:
     ```bash 
-    python learn_and_prove.py --train --file checkpoint.pth
-* To test a trained agent with weights file under `checkpoint.pth`, run:
+    python learn_and_prove.py --train --file FILENAME
+* To test a trained agent with weights file under `FILENAME`, run:
     ```bash 
-    python learn_and_prove.py --file checkpoint.pth
+    python learn_and_prove.py --file FILENAME
+    ```
+* To demo `data/checkpoint.pth`, run:
+    ```bash 
+    python learn_and_prove.py --file data/checkpoint.pth
+    ```
+* To demo `data/checkpoint.pth` with random policy, run:
+    ```bash 
+    python learn_and_prove.py --random --file data/checkpoint.pth
     ```
